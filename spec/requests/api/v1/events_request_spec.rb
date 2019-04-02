@@ -10,8 +10,8 @@ describe 'Events API' do
 
     expect(response.status).to eq(200)
     results = JSON.parse(response.body, symbolize_names: true)[:data]
-    expect(results).to have_key(:id)
-    expect(results[:type]).to eq("event")
+    expect(results[0]).to have_key(:id)
+    expect(results[0][:type]).to eq("event")
     expect(results.length).to eq(2)
     expect(results[0][:attributes][:name]).to eq(@event_1.name)
     expect(results[0][:attributes][:city]).to eq(@event_1.city)
