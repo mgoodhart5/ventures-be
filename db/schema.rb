@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_222325) do
     t.string "name"
     t.string "city"
     t.string "state"
-    t.string "type"
+    t.string "event_type"
     t.integer "price"
     t.string "start_date"
     t.string "end_date"

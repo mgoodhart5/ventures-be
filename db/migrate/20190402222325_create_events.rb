@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :city
       t.string :state
-      t.string :type
+      t.string :event_type
       t.integer :price
       t.string :start_date
       t.string :end_date
