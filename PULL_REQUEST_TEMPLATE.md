@@ -1,5 +1,5 @@
-#### Pivotal URL or Waffle Card number:
-
+#### User Story ___ :
+Closes #
 #### What does this PR do?
 
 #### Where should the reviewer start?
