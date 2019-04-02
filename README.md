@@ -1,24 +1,26 @@
-# README
+# Ventures BE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Endpoints
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+### Local Setup
 
-* System dependencies
+### Running Tests
 
-* Configuration
+## Built With: Technologies and Versions
+* [Ruby 2.4.5](https://ruby-doc.org/core-2.4.5/)
+* [Rails 5.2.2](https://guides.rubyonrails.org/)
+* [Fast JSON:API](https://github.com/Netflix/fast_jsonapi)
+* [Faraday](https://github.com/lostisland/faraday)
+* [Heroku](https://www.heroku.com/)
+* [RSpec](http://rspec.info/)
+* [Capybara](https://github.com/teamcapybara/capybara/blob/3.12_stable/README.md)
 
-* Database creation
+## Authors
+**[Anna Smolentzov](https://github.com/asmolentzov)**
+**[Mary Goodhart](https://github.com/mgoodhart5)**
+**[Whitney Burton](https://github.com/whitneyburton)**
+**[Karin Ohman](https://github.com/kaohman)**
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Acknowledgements
