@@ -1,5 +1,6 @@
-FROM ruby: 2.4.5
+FROM ruby:2.4.5
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN gem install bundler --version "2.0.1"
 RUN mkdir /ventures-be
 WORKDIR /ventures-be
 COPY Gemfile /ventures-be/Gemfile
