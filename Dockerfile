@@ -14,4 +14,5 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
+CMD ["rake", "db:{drop,create,migrate,seed}"]
 CMD ["rails", "s", "-b", "0.0.0.0"]
