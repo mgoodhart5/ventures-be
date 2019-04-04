@@ -51,9 +51,9 @@ jobs:
 
       # Database setup
       - run: apt-get install -y sudo
-      - run: sudo /usr/local/bin/docker-compose build
-      - run: sudo /usr/local/bin/docker-compose run web rake db:create
-      - run: sudo /usr/local/bin/docker-compose run web rake db:schema:load
+      - run: sudo docker-compose build
+      - run: sudo docker-compose run web rake db:create
+      - run: sudo docker-compose run web rake db:schema:load
 
       # run tests!
       - run:
