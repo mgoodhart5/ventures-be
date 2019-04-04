@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: annasmolentzov/ventures-be-web:0.0.1
+      - image: circleci/ruby:2.4.5
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
