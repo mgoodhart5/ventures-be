@@ -27,6 +27,11 @@ jobs:
             - v1-dependencies-
 
       - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
