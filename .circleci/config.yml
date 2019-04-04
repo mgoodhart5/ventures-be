@@ -50,8 +50,9 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: /usr/local/bin/docker-compose run web rake db:create
-      - run: /usr/local/bin/docker-compose run web rake db:schema:load
+      - run: docker-compose build
+      - run: docker-compose run web rake db:create
+      - run: docker-compose run web rake db:schema:load
 
       # run tests!
       - run:
