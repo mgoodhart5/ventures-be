@@ -85,7 +85,8 @@ Returns a single user.
     "attributes": {
       "name": "Wonder Woman",
       "email": "wonderful@gmail.com",
-      "image_url": "https://images.unsplash.com/photo-1536626420752-b144a129fde9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+      "image_url": "https://images.unsplash.com/photo-1536626420752-b144a129fde9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+      "bio": "Diana is the daughter of Queen Hippolyta, the first child born on Paradise Island in the three thousand year history that the immortal Amazons lived there. The Amazons had been created around 1200 B.C. when the Greek goddesses drew forth the souls of all women who had been murdered by men and placed them on the island."
     }
   }
 }
