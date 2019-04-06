@@ -7,8 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require './app/models/event'
+require './app/models/user'
 
 Event.destroy_all
+User.destroy_all
+
+# User
+
+User.create(name: "Wonder Woman", email: "wonderful@gmail.com", image_url: "https://images.unsplash.com/photo-1536626420752-b144a129fde9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80")
 
 # Events
 
