@@ -80,6 +80,21 @@ describe 'Users API' do
     expect(user[:attributes][:image_url]).to eq(@user.image_url)
     expect(user[:attributes][:bio]).to eq(@user.bio)
   end
+  it 'can update all attributes for a user' do
+    new_email = "new@email.com"
+    new_bio = "New Bio"
+    new_name = "New Name"
+
+    put "/api/v1/users/#{@user.id}", params: { name: new_name, bio: new_bio, email: new_email }
+
+    expect(response.status).to eq(200)
+    user = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(user[:id]).to eq(@user.id.to_s)
+    expect(user[:attributes][:name]).to eq(new_name)
+    expect(user[:attributes][:email]).to eq(new_email)
+    expect(user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(user[:attributes][:bio]).to eq(new_bio)
+  end
   it 'create a new user_event with no status specified' do
     post "/api/v1/users/#{@user.id}/events/#{@event_3.id}"
 
