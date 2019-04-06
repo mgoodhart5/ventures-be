@@ -90,6 +90,53 @@ Returns a single user.
   }
 }
 ```
+
+#### `GET /api/v1/users/:id/events`
+Returns all of the events for the specified user. Returns all event attributes along with the status for that user_event.
+#### Returned Data Format
+```
+{
+  "data": [
+          {
+            "id": "35",
+            "type": "my_event",
+            "attributes": {
+              "name": "Shelf Road Craggin' Classic",
+              "city": "Canon Springs",
+              "state": "CO",
+              "event_type": "climbing",
+              "price": 35,
+              "start_date": "10-19-2018",
+              "end_date": "10-21-2018",
+              "description": "This October 19-21, head on down to the best limestone sport cragging Colorado has to offer, and with the American Alpine Club and CAMP USA, and be treated to a weekend of climbing, community, clinics, contests, beer, slideshows, films, giveaways, stewardship and fun.",
+              "event_url": "https://americanalpineclub.org/shelf-road-cc",
+              "image_url": "https://static1.squarespace.com/static/55830fd9e4b0ec758c892f81/57bc7284f7e0abe0efbb523e/59417dc21b631bad37b19a74/1497464437416/_MG_1604.jpg",
+              "video_url": "https://www.youtube.com/embed/Cnjv_Brs2Bo",
+              "status": "past"
+            }
+          },
+          {
+            "id": "37",
+            "type": "my_event",
+            "attributes": {
+              "name": "Crested Butte Bike Week",
+              "city": "Crested Butte",
+              "state": "CO",
+              "event_type": "biking",
+              "price": 0,
+              "start_date": "06-27-2019",
+              "end_date": "06-30-2019",
+              "description": "Bike week is a multi-day celebration of all things mountain bike in the Gunnison Valley. We still have the big thigh burner of a singletrack race, the Fat Tire 40, but now CB Bike Week is more of a celebration of how mountain biking defines our community in the summer. Join us for clinics, a film festival, the Chainless Downhill World Championships, good beer, and a great party.",
+              "event_url": "http://www.cbchamber.com/chamberevents/cb-bike-week/",
+              "image_url": "https://travelcrestedbutte.com/wp-content/uploads/bike-week-feature.jpg",
+              "video_url": "https://www.youtube.com/embed/0cFSZCDMP_U",
+              "status": "attending"
+            }
+          }
+      ]
+}
+```
+
 ## Installation
 
 ### Local Setup
