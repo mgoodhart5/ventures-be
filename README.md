@@ -5,7 +5,7 @@
 #### `GET /api/v1/events`
 Returns all the events in the system.
 #### Optional Parameters
-None at the moment. TBD depending on how we decide with the Front End to handle filtering. 
+None at the moment. TBD depending on how we decide with the Front End to handle filtering.
 #### Returned Data Format
 ```
 {
@@ -48,6 +48,48 @@ None at the moment. TBD depending on how we decide with the Front End to handle 
 }
 ```
 
+#### `GET /api/v1/events/:id`
+Returns a single event.
+#### Returned Data Format
+```
+{
+  "data": {
+  "id": "5",
+  "type": "event",
+  "attributes": {
+    "name": "Fjallraven US Classic",
+    "city": "Leadville",
+    "state": "CO",
+    "event_type": "hiking",
+    "price": 299,
+    "start_date": "08-27-2019",
+    "end_date": "08-30-2019",
+    "description": "The Classic trekking series embodies Fjällräven’s spirit. The communal trek is all about spending time in nature with a crew of like-minded people, creating lasting memories on the trail and sharing stories around the campfire. We get excited to introduce fans of Fjallraven to the Swedish trekking tradition in our beautiful backyard.",
+    "event_url": "https://classic.fjallraven.com/usa/classic-usa/about-classic-usa/",
+    "image_url": "https://www.outsideonline.com/sites/default/files/styles/full-page/public/2016/08/26/fjallraven-classic_h.jpg?itok=-kiFQlnk",
+    "video_url": "https://www.youtube.com/embed/lfy1c72XFgQ"
+    }
+  }
+}
+```
+
+### Users
+#### `GET /api/v1/users/:id`
+Returns a single user.
+#### Returned Data Format
+```
+{
+  "data": {
+    "id": "1",
+    "type": "user",
+    "attributes": {
+      "name": "Wonder Woman",
+      "email": "wonderful@gmail.com",
+      "image_url": "https://images.unsplash.com/photo-1536626420752-b144a129fde9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+    }
+  }
+}
+```
 ## Installation
 
 ### Local Setup
