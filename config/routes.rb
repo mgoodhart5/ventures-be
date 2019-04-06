@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :events, only: [:index, :show]
-      resources :users, only: [:show]
+      resources :users, only: [:show] 
+      namespace :users do
+        get '/:id/events', to: 'events#index'
+      end
     end
   end
 end
