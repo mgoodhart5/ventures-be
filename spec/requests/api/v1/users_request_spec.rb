@@ -19,6 +19,7 @@ describe 'Users API' do
     expect(returned_user[:attributes][:name]).to eq(@user.name)
     expect(returned_user[:attributes][:email]).to eq(@user.email)
     expect(returned_user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(returned_user[:attributes][:bio]).to eq(@user.bio)
   end
   it 'returns a single users events with attributes' do
     get "/api/v1/users/#{@user.id}/events"
