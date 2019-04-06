@@ -138,6 +138,42 @@ Returns all of the events for the specified user. Returns all event attributes a
 }
 ```
 
+### User Events
+#### `POST /api/v1/users/:id/events/:event_id`
+Creates a new user_event for the specified user and event. 
+Returns a 201 status.
+Returns the event that the user_event refers to, along with the status. The default status is `wishlist` if no optional parameter is passed. 
+#### Optional Parameter
+`status`
+Options: 
+  - `attending`
+  - `wishlist` - this is the default
+Example: 
+`POST /api/v1/users/:id/events/:event_id?status=attending`
+#### Returned Data Format
+```
+{
+    "data": {
+        "id": "10",
+        "type": "my_event",
+        "attributes": {
+            "name": "International Climbers' Festival",
+            "city": "Lander",
+            "state": "WY",
+            "event_type": "climbing",
+            "price": 120,
+            "start_date": "07-10-2019",
+            "end_date": "07-14-2019",
+            "description": "COME CELEBRATE THE CLIMBING LIFESTYLE! WITH COMPETITIONS, ART, FOOD, MUSIC, BEER, AND SO MUCH MORE, IT'S SURE TO BE A PARTY.",
+            "event_url": "https://www.climbersfestival.org/#welcome",
+            "image_url": "https://static1.squarespace.com/static/52d067f7e4b0309df5e103de/t/52fab709e4b08ba35fbe1207/1392162571068/serivice+project.jpg",
+            "video_url": "https://www.youtube.com/embed/w9qQhpt7Ggs",
+            "status": "wishlist"
+        }
+    }
+}
+```
+
 ## Installation
 
 ### Local Setup
