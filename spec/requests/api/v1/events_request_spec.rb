@@ -26,4 +26,22 @@ describe 'Events API' do
     expect(results[0][:attributes][:video_url]).to eq(@event_1.video_url)
     expect(results[1][:attributes][:name]).to eq(@event_2.name)
   end
+  it 'returns a single event with attributes' do
+    get "/api/v1/events/#{@event_2.id}"
+    
+    expect(response.status).to eq(200)
+    results = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(results[:id]).to eq(@event_2.id.to_s)
+    expect(results[:attributes][:name]).to eq(@event_2.name)
+    expect(results[:attributes][:city]).to eq(@event_2.city)
+    expect(results[:attributes][:state]).to eq(@event_2.state)
+    expect(results[:attributes][:price]).to eq(@event_2.price)
+    expect(results[:attributes][:event_type]).to eq(@event_2.event_type)
+    expect(results[:attributes][:start_date]).to eq(@event_2.start_date)
+    expect(results[:attributes][:end_date]).to eq(@event_2.end_date)
+    expect(results[:attributes][:description]).to eq(@event_2.description)
+    expect(results[:attributes][:event_url]).to eq(@event_2.event_url)
+    expect(results[:attributes][:image_url]).to eq(@event_2.image_url)
+    expect(results[:attributes][:video_url]).to eq(@event_2.video_url)
+  end
 end
