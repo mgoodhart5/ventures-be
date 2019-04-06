@@ -9,4 +9,8 @@ describe Event do
     it { should validate_presence_of(:start_date) }
     it { should validate_presence_of(:end_date) }
   end
+  
+  describe 'Relationships' do
+    it { should have_many(:users).through(:user_events) }
+  end
 end

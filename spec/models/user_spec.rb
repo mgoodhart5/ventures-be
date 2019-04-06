@@ -6,4 +6,8 @@ describe User do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:image_url) }
   end
+  
+  describe 'Relationships' do
+    it { should have_many(:events).through(:user_events)}
+  end
 end
