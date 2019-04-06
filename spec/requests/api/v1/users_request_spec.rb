@@ -44,4 +44,23 @@ describe 'Users API' do
     expect(user_events.last[:attributes][:name]).to eq(@event_2.name)
     expect(user_events.last[:attributes][:status]).to eq(@user_event_2.status)
   end
+  it 'create a new user_event with no status specified' do
+    post "/api/v1/users/#{@user.id}/events/#{@event_3.id}"
+    
+    expect(response.status).to eq(201)
+    event = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(event[:id]).to eq(@event_3.id.to_s)
+    expect(user_events[:attributes][:name]).to eq(@event_3.name)
+    expect(user_events[:attributes][:city]).to eq(@event_3.city)
+    expect(user_events[:attributes][:state]).to eq(@event_3.state)
+    expect(user_events[:attributes][:price]).to eq(@event_3.price)
+    expect(user_events[:attributes][:event_type]).to eq(@event_3.event_type)
+    expect(user_events[:attributes][:start_date]).to eq(@event_3.start_date)
+    expect(user_events[:attributes][:end_date]).to eq(@event_3.end_date)
+    expect(user_events[:attributes][:description]).to eq(@event_3.description)
+    expect(user_events[:attributes][:image_url]).to eq(@event_3.image_url)
+    expect(user_events[:attributes][:event_url]).to eq(@event_3.event_url)
+    expect(user_events[:attributes][:video_url]).to eq(@event_3.video_url)
+    expect(user_events[:attributes][:status]).to eq('wishlist')
+  end
 end
