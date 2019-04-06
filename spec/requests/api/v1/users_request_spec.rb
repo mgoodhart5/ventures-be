@@ -63,4 +63,23 @@ describe 'Users API' do
     expect(event[:attributes][:video_url]).to eq(@event_3.video_url)
     expect(event[:attributes][:status]).to eq('wishlist')
   end
+  it 'create a new user_event with an attending status specified' do
+    post "/api/v1/users/#{@user.id}/events/#{@event_3.id}?status=attending"
+    
+    expect(response.status).to eq(201)
+    event = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(event[:id]).to eq(@event_3.id.to_s)
+    expect(event[:attributes][:name]).to eq(@event_3.name)
+    expect(event[:attributes][:city]).to eq(@event_3.city)
+    expect(event[:attributes][:state]).to eq(@event_3.state)
+    expect(event[:attributes][:price]).to eq(@event_3.price)
+    expect(event[:attributes][:event_type]).to eq(@event_3.event_type)
+    expect(event[:attributes][:start_date]).to eq(@event_3.start_date)
+    expect(event[:attributes][:end_date]).to eq(@event_3.end_date)
+    expect(event[:attributes][:description]).to eq(@event_3.description)
+    expect(event[:attributes][:image_url]).to eq(@event_3.image_url)
+    expect(event[:attributes][:event_url]).to eq(@event_3.event_url)
+    expect(event[:attributes][:video_url]).to eq(@event_3.video_url)
+    expect(event[:attributes][:status]).to eq('attending')
+  end
 end
