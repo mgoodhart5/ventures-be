@@ -13,7 +13,7 @@ jobs: # a collection of steps
       - image: circleci/postgres # database image
         environment: # environment variables for database
           POSTGRES_USER: ventures-be
-          POSTGRES_DB: ventures-be
+          POSTGRES_DB: ventures-be_test
           POSTGRES_PASSWORD: ""
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
