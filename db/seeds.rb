@@ -52,7 +52,7 @@ Event.create(name: "Into the Wild Running Festival", city: "Keensburg", state: "
 
 # User Events
 
-UserEvent.create(user: user, event: event_1, status: 2)
+UserEvent.create(user: user, event: event_1, status: 0)
 UserEvent.create(user: user, event: event_2, status: 1)
 UserEvent.create(user: user, event: event_3, status: 0)
 UserEvent.create(user: user, event: event_4, status: 0)
