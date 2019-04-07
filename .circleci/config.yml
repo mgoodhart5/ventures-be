@@ -7,9 +7,10 @@ jobs: # a collection of steps
           # BUNDLE_JOBS: 3
           # BUNDLE_RETRY: 3
           # BUNDLE_PATH: vendor/bundle
+          # PGUSER: ventures-be_test
           PGHOST: 127.0.0.1
-          PGUSER: ventures-be_test
           RAILS_ENV: test
+          DATABASE_URL: postgres://localhost/ventures-be_test
       - image: circleci/postgres # database image
         environment: # environment variables for database
           POSTGRES_USER: circleci
