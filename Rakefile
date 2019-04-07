@@ -14,7 +14,7 @@ task :update_status => :environment do
   end
   past_events.each do |event|
     event.user_events.each do |user_event|
-      user_event.update(status: "past")
+      user_event.update(status: 2)
     end
   end
 end
