@@ -44,9 +44,60 @@ describe 'Users API' do
     expect(user_events.last[:attributes][:name]).to eq(@event_2.name)
     expect(user_events.last[:attributes][:status]).to eq(@user_event_2.status)
   end
+  it 'can update a user name' do
+    new_name = "New Name"
+    put "/api/v1/users/#{@user.id}", params: { name: new_name }
+
+    expect(response.status).to eq(200)
+    user = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(user[:id]).to eq(@user.id.to_s)
+    expect(user[:attributes][:name]).to eq(new_name)
+    expect(user[:attributes][:email]).to eq(@user.email)
+    expect(user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(user[:attributes][:bio]).to eq(@user.bio)
+  end
+  it 'can update a user bio' do
+    new_bio = "New Bio"
+    put "/api/v1/users/#{@user.id}", params: { bio: new_bio }
+
+    expect(response.status).to eq(200)
+    user = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(user[:id]).to eq(@user.id.to_s)
+    expect(user[:attributes][:name]).to eq(@user.name)
+    expect(user[:attributes][:email]).to eq(@user.email)
+    expect(user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(user[:attributes][:bio]).to eq(new_bio)
+  end
+  it 'can update a user email' do
+    new_email = "new@email.com"
+    put "/api/v1/users/#{@user.id}", params: { email: new_email }
+
+    expect(response.status).to eq(200)
+    user = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(user[:id]).to eq(@user.id.to_s)
+    expect(user[:attributes][:name]).to eq(@user.name)
+    expect(user[:attributes][:email]).to eq(new_email)
+    expect(user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(user[:attributes][:bio]).to eq(@user.bio)
+  end
+  it 'can update all attributes for a user' do
+    new_email = "new@email.com"
+    new_bio = "New Bio"
+    new_name = "New Name"
+
+    put "/api/v1/users/#{@user.id}", params: { name: new_name, bio: new_bio, email: new_email }
+
+    expect(response.status).to eq(200)
+    user = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(user[:id]).to eq(@user.id.to_s)
+    expect(user[:attributes][:name]).to eq(new_name)
+    expect(user[:attributes][:email]).to eq(new_email)
+    expect(user[:attributes][:image_url]).to eq(@user.image_url)
+    expect(user[:attributes][:bio]).to eq(new_bio)
+  end
   it 'create a new user_event with no status specified' do
     post "/api/v1/users/#{@user.id}/events/#{@event_3.id}"
-    
+
     expect(response.status).to eq(201)
     event = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(event[:id]).to eq(@event_3.id.to_s)
@@ -65,7 +116,7 @@ describe 'Users API' do
   end
   it 'create a new user_event with an attending status specified' do
     post "/api/v1/users/#{@user.id}/events/#{@event_3.id}?status=attending"
-    
+
     expect(response.status).to eq(201)
     event = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(event[:id]).to eq(@event_3.id.to_s)
