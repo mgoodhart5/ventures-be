@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :events, only: [:index, :show]
       resources :users, only: [:show, :update]
-      resources :users, only: [:show]
       post 'users/:id/events/:event_id', to: 'user_events#create'
       namespace :users do
         get '/:id/events', to: 'events#index'
