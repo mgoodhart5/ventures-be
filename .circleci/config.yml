@@ -28,10 +28,12 @@ jobs: # a collection of steps
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle check || bundle install
-
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Create DB
+          command: bin/rails db:create
       - run:
           name: Database setup
           command: bin/rails db:schema:load --trace
