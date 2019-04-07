@@ -8,7 +8,7 @@ jobs: # a collection of steps
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
-          PGUSER: ventures-b
+          PGUSER: ventures-be
           RAILS_ENV: test
       - image: circleci/postgres # database image
         environment: # environment variables for database
@@ -32,7 +32,7 @@ jobs: # a collection of steps
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
+      -
       - run:
           name: Database setup
           command: bin/rails db:schema:load --trace
