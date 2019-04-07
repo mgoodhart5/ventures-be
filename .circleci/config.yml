@@ -25,7 +25,7 @@ jobs: # a collection of steps
 
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: bundle check || bundle install
+          command: bundle check || bundle install --version "2.0.1"
 
       - run:
           name: Wait for DB
