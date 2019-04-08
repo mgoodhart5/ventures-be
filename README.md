@@ -4,8 +4,19 @@
 ### Events
 #### `GET /api/v1/events`
 Returns all the events in the system.
-#### Optional Parameters
-None at the moment. TBD depending on how we decide with the Front End to handle filtering.
+#### Optional Parameters for Filtering
+One or multiple of the following parameters can be added to endpoint to filter which events are returned.
+
+If no parameters are specified, all events are returned.
+
+`event_type`
+
+`state`
+
+`month`
+
+Example:
+`GET /api/v1/events?event_type=running&month=6`
 #### Returned Data Format
 ```
 {
