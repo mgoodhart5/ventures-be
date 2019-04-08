@@ -18,6 +18,8 @@ class Api::V1::UserEventsController < ApplicationController
   end
 
   def destroy
+    user_event = UserEvent.find_by(user_id: params[:id], event_id: params[:event_id])
+    user_event.destroy
   end
 
   private
