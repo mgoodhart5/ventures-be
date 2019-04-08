@@ -94,8 +94,11 @@ Returns a single user.
 
 #### `PUT /api/v1/users/:id`
 Edits any one attribute for a user or any attributes combined except for image_url.
+
 Returns a 200 status.
+
 Returns the user with updated attributes.
+
 This can be done as parameters or as a body.
 #### Parameters
 `name=New Name`
@@ -124,6 +127,8 @@ Example:
     }
 }
 ```
+
+### User Events
 #### `GET /api/v1/users/:id/events`
 Returns all of the events for the specified user. Returns all event attributes along with the status for that user_event.
 #### Returned Data Format
@@ -170,10 +175,11 @@ Returns all of the events for the specified user. Returns all event attributes a
 }
 ```
 
-### User Events
 #### `POST /api/v1/users/:id/events/:event_id`
 Creates a new user_event for the specified user and event.
+
 Returns a 201 status.
+
 Returns the event that the user_event refers to, along with the status. The default status is `wishlist` if no optional parameter is passed.
 #### Optional Parameter
 `status`
@@ -207,12 +213,16 @@ Example:
 ```
 
 #### `PUT /api/v1/users/:id/events/:event_id`
-Updates a user_event specified by the user ID and event ID. Updates the status of the event. 
+Updates a user_event specified by the user ID and event ID. Updates the status of the event.
+
 Returns a 200 status.
+
 Returns the event with the updated status of the associated user_event.
+
 This can be done as parameters or as a body.
 #### Parameters
 `status=wishlist`
+
 Options for the status are `wishlist`, `attending`, and `past`.
 
 Example:
@@ -243,6 +253,15 @@ Example:
     }
 }
 ```
+
+#### `DELETE /api/v1/users/:id/events/:event_id`
+Deletes a user_event specified by the user ID and event ID.
+
+Returns a 204 status.
+
+Does not return any data.
+
+____
 
 ## Installation
 

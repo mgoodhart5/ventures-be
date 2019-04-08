@@ -135,14 +135,20 @@ describe 'Users API' do
   end
   it 'can update a user_event status' do
     expect(@user_event_1.status).to eq('wishlist')
-    
+
     put "/api/v1/users/#{@user.id}/events/#{@event_1.id}", params: { status: 'attending' }
-    
+
     expect(response.status).to eq(200)
     event = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(event[:id]).to eq(@event_1.id.to_s)
     expect(event[:attributes][:name]).to eq(@event_1.name)
     expect(event[:attributes][:status]).to eq('attending')
     expect(@user_event_1.reload.status).to eq('attending')
+  end
+  it 'can delete a user_event' do
+    delete "/api/v1/users/#{@user.id}/events/#{@event_1.id}"
+
+    expect(response.status).to eq(204)
+    expect(@user.events.length).to eq(1)
   end
 end
