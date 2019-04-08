@@ -44,4 +44,59 @@ describe 'Events API' do
     expect(results[:attributes][:image_url]).to eq(@event_2.image_url)
     expect(results[:attributes][:video_url]).to eq(@event_2.video_url)
   end
+  it 'returns events filtered by event_type' do
+    event_3 = Event.create(name: "Running 3", city: "Fruita", state: "CO", event_type: "running", price: 120, start_date: "04-13-2019", end_date: "04-14-2019", description: "A weekend of fun and running on the beautiful trails near Fruita, Colorado. The weekend includes a Trail Marathon & 50K races along with an Awards Party on Saturday, and 10K & Half Marathon races on Sunday.", event_url: "https://geminiadventures.com/trail-running-festival/", image_url: "https://geminiadventures.com/trail-running-festival/", video_url: "https://www.youtube.com/embed/UxVKnb8DMYQ")
+    event_type = 'running'
+    get "/api/v1/events?event_type=#{event_type}"
+    
+    expect(response.status).to eq(200)
+    events = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(events.count).to eq(2)
+    expect(events[0][:id]).to eq(@event_1.id.to_s)
+    expect(events[0][:attributes][:name]).to eq(@event_1.name)
+    expect(events[1][:id]).to eq(event_3.id.to_s)
+    expect(events[1][:attributes][:name]).to eq(event_3.name)
+  end
+  it 'returns events filtered by abbreviated state' do
+    event_3 = Event.create(name: "Running 3", city: "Fruita", state: "CA", event_type: "running", price: 120, start_date: "04-13-2019", end_date: "04-14-2019", description: "A weekend of fun and running on the beautiful trails near Fruita, Colorado. The weekend includes a Trail Marathon & 50K races along with an Awards Party on Saturday, and 10K & Half Marathon races on Sunday.", event_url: "https://geminiadventures.com/trail-running-festival/", image_url: "https://geminiadventures.com/trail-running-festival/", video_url: "https://www.youtube.com/embed/UxVKnb8DMYQ")
+    state = 'CO'
+    get "/api/v1/events?state=#{state}"
+    
+    expect(response.status).to eq(200)
+    events = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(events.count).to eq(2)
+    expect(events[0][:id]).to eq(@event_1.id.to_s)
+    expect(events[0][:attributes][:name]).to eq(@event_1.name)
+    expect(events[1][:id]).to eq(@event_2.id.to_s)
+    expect(events[1][:attributes][:name]).to eq(@event_2.name)
+  end
+  it 'returns events filtered by month' do
+    event_3 = Event.create(name: "Running 3", city: "Fruita", state: "CA", event_type: "running", price: 120, start_date: "04-13-2019", end_date: "04-14-2019", description: "A weekend of fun and running on the beautiful trails near Fruita, Colorado. The weekend includes a Trail Marathon & 50K races along with an Awards Party on Saturday, and 10K & Half Marathon races on Sunday.", event_url: "https://geminiadventures.com/trail-running-festival/", image_url: "https://geminiadventures.com/trail-running-festival/", video_url: "https://www.youtube.com/embed/UxVKnb8DMYQ")
+    month = 4
+    get "/api/v1/events?month=#{month}"
+    
+    expect(response.status).to eq(200)
+    events = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(events.count).to eq(2)
+    expect(events[0][:id]).to eq(@event_1.id.to_s)
+    expect(events[0][:attributes][:name]).to eq(@event_1.name)
+    expect(events[1][:id]).to eq(event_3.id.to_s)
+    expect(events[1][:attributes][:name]).to eq(event_3.name)
+  end
+  it 'returns events filtered by a combination of state, month, and event_type' do
+    event_3 = Event.create(name: "Running 3", city: "Fruita", state: "CA", event_type: "running", price: 120, start_date: "04-13-2019", end_date: "04-14-2019", description: "A weekend of fun and running on the beautiful trails near Fruita, Colorado. The weekend includes a Trail Marathon & 50K races along with an Awards Party on Saturday, and 10K & Half Marathon races on Sunday.", event_url: "https://geminiadventures.com/trail-running-festival/", image_url: "https://geminiadventures.com/trail-running-festival/", video_url: "https://www.youtube.com/embed/UxVKnb8DMYQ")
+    event_4 = Event.create(name: "Running 4", city: "Fruita", state: "CO", event_type: "running", price: 120, start_date: "04-13-2019", end_date: "04-14-2019", description: "A weekend of fun and running on the beautiful trails near Fruita, Colorado. The weekend includes a Trail Marathon & 50K races along with an Awards Party on Saturday, and 10K & Half Marathon races on Sunday.", event_url: "https://geminiadventures.com/trail-running-festival/", image_url: "https://geminiadventures.com/trail-running-festival/", video_url: "https://www.youtube.com/embed/UxVKnb8DMYQ")
+    month = 4
+    event_type = 'running'
+    state = 'CO'
+    get "/api/v1/events?month=#{month}&event_type=#{event_type}&state=#{state}"
+    
+    expect(response.status).to eq(200)
+    events = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(events.count).to eq(2)
+    expect(events[0][:id]).to eq(@event_1.id.to_s)
+    expect(events[0][:attributes][:name]).to eq(@event_1.name)
+    expect(events[1][:id]).to eq(event_4.id.to_s)
+    expect(events[1][:attributes][:name]).to eq(event_4.name)
+  end
 end
