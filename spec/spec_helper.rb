@@ -12,6 +12,19 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+require 'simplecov'
+
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/' # for rspec
+  add_filter '/channels'
+  add_filter '/jobs'
+  add_filter '/mailers'
+  add_filter '/helpers'
+  add_filter '/models/application_record.rb'
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
