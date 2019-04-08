@@ -10,15 +10,18 @@ class Api::V1::UserEventsController < ApplicationController
     end
     render json: MyEventSerializer.new(Event.find(params[:event_id]), { params: { user_id: user.id } }), status: :created
   end
-  
+
   def update
     user_event = UserEvent.find_by(user_id: params[:id], event_id: params[:event_id])
     user_event.update(user_event_params)
     render json: MyEventSerializer.new(Event.find(params[:event_id]), { params: { user_id: params[:id] } })
   end
-  
+
+  def destroy
+  end
+
   private
-  
+
   def user_event_params
     params.permit(:status)
   end

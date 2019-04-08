@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :update]
       post 'users/:id/events/:event_id', to: 'user_events#create'
       put 'users/:id/events/:event_id', to: 'user_events#update'
+      delete 'users/:id/events/:event_id', to: 'user_events#destroy'
       namespace :users do
         get '/:id/events', to: 'events#index'
       end
