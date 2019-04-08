@@ -1,18 +1,20 @@
 class Api::V1::EventsController < ApplicationController
   def index
-    if params[:event_type]
-      render json: EventSerializer.new(Event.where(event_type: params[:event_type]))
-    elsif params[:state]
-      render json: EventSerializer.new(Event.where(state: params[:state]))
-    elsif params[:month]
+    events = Event.where(filter_params)
+    if params[:month]
       month = params[:month].rjust(2, '0')
-      render json: EventSerializer.new(Event.where("start_date LIKE '#{month}%'"))
-    else
-      render json: EventSerializer.new(Event.all)
+      events = events.where("start_date LIKE '#{month}%'")
     end
+    render json: EventSerializer.new(events)
   end
   
   def show
     render json: EventSerializer.new(Event.find(params[:id]))
+  end
+  
+  private
+  
+  def filter_params
+    params.permit(:event_type, :state)
   end
 end
