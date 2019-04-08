@@ -206,6 +206,44 @@ Example:
 }
 ```
 
+#### `PUT /api/v1/users/:id/events/:event_id`
+Updates a user_event specified by the user ID and event ID. Updates the status of the event. 
+Returns a 200 status.
+Returns the event with the updated status of the associated user_event.
+This can be done as parameters or as a body.
+#### Parameters
+`status=wishlist`
+Options for the status are `wishlist`, `attending`, and `past`.
+
+Example:
+`PUT /api/v1/users/:id/events/:event_id?status=attending`
+#### Body
+Example:
+`{ "status": "attending" }`
+#### Returned Data Format
+```
+{
+    "data": {
+        "id": "20",
+        "type": "my_event",
+        "attributes": {
+            "name": "Crested Butte Bike Week",
+            "city": "Crested Butte",
+            "state": "CO",
+            "event_type": "biking",
+            "price": 0,
+            "start_date": "06-27-2019",
+            "end_date": "06-30-2019",
+            "description": "Bike week is a multi-day celebration of all things mountain bike in the Gunnison Valley. We still have the big thigh burner of a singletrack race, the Fat Tire 40, but now CB Bike Week is more of a celebration of how mountain biking defines our community in the summer. Join us for clinics, a film festival, the Chainless Downhill World Championships, good beer, and a great party.",
+            "event_url": "http://www.cbchamber.com/chamberevents/cb-bike-week/",
+            "image_url": "https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
+            "video_url": "https://www.youtube.com/embed/0cFSZCDMP_U",
+            "status": "attending"
+        }
+    }
+}
+```
+
 ## Installation
 
 ### Local Setup
