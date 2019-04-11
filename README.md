@@ -1,4 +1,23 @@
-# Ventures BE
+# Ventures
+Ventures is a 4 person group project for Module 4 at the [Turing School of Software & Design](https://turing.io/). It is a cross-pollination project with two students from the [Front-End Engineering Program](https://turing.io/programs/front-end-engineering/) and two students from the [Back-End Engineering Program](https://turing.io/programs/back-end-engineering/).The project specifications can be found [here](http://backend.turing.io/module4/projects/cross_pollination/cross_pollination_spec).
+
+Ventures is an application to allow users to browse outdoor festivals and events. You can browse through a variety of climbing, mountain biking, hiking, running, and white water rafting events all throughout the US. Each card gives more details including the start/end dates, a link to the events website, an accompanying photo and YouTube video, as well as buttons for the you to add that event to your ‘wishlist’ or ‘attending’ lists. Your profile page allows you to edit your user name and personal bio as well as view events filtered by upcoming events, wish-listed events, and past events you’ve attended. Ventures is here to help you find the right events for you!
+
+The link to the Ventures deployed frontend can be found [here](https://ventures-turing.herokuapp.com/) along with the [github repo](https://github.com/whitneyburton/ventures-fe). The link to the deployed Ventures Backend API can be found [here](https://ventures-be.herokuapp.com/api/v1/events) along with the [github repo](https://github.com/mgoodhart5/ventures-be). We used waffle.io for our [agile board](https://waffle.io/whitneyburton/ventures-fe).
+
+## Ventures Backend
+The Ventures backend API was created with Ruby on Rails. It is a [json:api](https://jsonapi.org/) compliant versioned API which we implemented using [Fast JSON:API](https://github.com/Netflix/fast_jsonapi). This is [deployed](https://ventures-be.herokuapp.com/api/v1/events) on Heroku using a Docker image. Continuous integration was implemented using [CircleCI](https://circleci.com/gh/mgoodhart5/ventures-be).
+
+## Contributors
+#### Backend
+**[Anna Smolentzov](https://github.com/asmolentzov)**
+
+**[Mary Goodhart](https://github.com/mgoodhart5)**
+
+#### Frontend
+**[Whitney Burton](https://github.com/whitneyburton)**
+
+**[Karin Ohman](https://github.com/kaohman)**
 
 ## Endpoints
 ### Events
@@ -197,6 +216,7 @@ Returns the event that the user_event refers to, along with the status. The defa
 Options:
   - `attending`
   - `wishlist` - this is the default
+
 Example:
 `POST /api/v1/users/:id/events/:event_id?status=attending`
 #### Returned Data Format
@@ -274,28 +294,56 @@ Does not return any data.
 
 ____
 
-## Installation
+## Local Installation and Setup
 
-### Local Setup
+This app is containerized with Docker.
+- Follow [these](https://www.docker.com/get-started) instructions to download and set up Docker on your local machine.
+- Clone this repo `git clone https://github.com/mgoodhart5/ventures-be`
+- Type these commands in the terminal to build and set up your local environment:
+  - To build the docker image:
+```
+docker-compose build
+```
+  - To setup environment variables:
+```
+docker-compose run web bundle exec figaro install
+```
+  - This will create an `application.yml` file in the `config` directory.
+  - Open this file and type `PGUSER: postgres` at the bottom of the file, then save and close the file.
 
-### Running Tests
+  - To setup the database:
+```
+docker-compose run web rake db:{create,migrate,seed}
+```
+  - To run your local environment:
+```
+docker-compose up
+```
+  - To gracefully shut down the local environment, in a separate terminal window type:
+```
+docker-compose down
+```
 
-## Built With: Technologies and Versions
+### Notes
+- To run standard `rails` commands in this environment, they **must** be prefaced with
+```
+docker-compose run web <your command here>
+```
+- To install and run the frontend of this application locally, please refer to the instructions located in the [frontend repo](https://github.com/whitneyburton/ventures-fe) for this app.
+
+
+## Running Tests
+This repo is fully tested using RSpec. To run the tests locally, run the following command:
+```
+docker-compose run web rspec
+```
+Green is passing, red is failing.
+
+## Backend Built With: Technologies and Versions
 * [Ruby 2.4.5](https://ruby-doc.org/core-2.4.5/)
 * [Rails 5.2.2](https://guides.rubyonrails.org/)
 * [Fast JSON:API](https://github.com/Netflix/fast_jsonapi)
-* [Faraday](https://github.com/lostisland/faraday)
 * [Heroku](https://www.heroku.com/)
 * [RSpec](http://rspec.info/)
-* [Capybara](https://github.com/teamcapybara/capybara/blob/3.12_stable/README.md)
-
-## Authors
-**[Anna Smolentzov](https://github.com/asmolentzov)**
-
-**[Mary Goodhart](https://github.com/mgoodhart5)**
-
-**[Whitney Burton](https://github.com/whitneyburton)**
-
-**[Karin Ohman](https://github.com/kaohman)**
-
-## Acknowledgements
+* [Docker Compose](https://docs.docker.com/compose/)
+* [Postgres](https://www.postgresql.org/)
