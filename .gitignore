@@ -31,3 +31,5 @@
 
 # Ignore Simplecov files
 /coverage
+
+.elasticbeanstalk
